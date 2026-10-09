@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Sumesh Kumar Singh, Computer Science student and aspiring software developer.">
+  <title>Sumesh Kumar Singh | Developer Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111c30;
+      --blue: #60a5fa;
+      --text: #f1f5f9;
+      --muted: #a7b4c8;
+      --border: #263750;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      background: rgba(11, 17, 32, 0.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--blue);
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      background:
+        radial-gradient(ellipse at 85% 20%, #172c50 0%, transparent 45%);
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      border: 1px solid #345582;
+      border-radius: 30px;
+      padding: 5px 15px;
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 66px);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .highlight {
+      color: var(--blue);
+    }
+
+    .hero p, .section-intro {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 23px;
+      border: 1px solid var(--blue);
+      border-radius: 7px;
+      font-weight: bold;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #08111f;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      opacity: 0.88;
+    }
+
+    /* General sections */
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      margin-bottom: 35px;
+    }
+
+    .about-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .skill {
+      padding: 22px 12px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.25s;
+    }
+
+    .skill:hover, .project:hover {
+      border-color: var(--blue);
+      transform: translateY(-4px);
+    }
+
+    .skill span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: normal;
+      margin-top: 5px;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 27px;
+      transition: 0.25s;
+    }
+
+    .project-number {
+      color: var(--blue);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .project h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .project p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech span {
+      background: #1c2c45;
+      color: #bfdbfe;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    /* Education */
+    .education-box {
+      border-left: 3px solid var(--blue);
+      padding: 10px 0 10px 25px;
+    }
+
+    .education-box p {
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .contact-link {
+      display: block;
+      margin-top: 16px;
+      color: var(--blue);
+      overflow-wrap: anywhere;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: white;
+      font: inherit;
+    }
+
+    input:focus, textarea:focus {
+      outline: 1px solid var(--blue);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--blue);
+    }
+
+    /* Mobile layout */
+    @media (max-width: 760px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        padding: 20px 5%;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">SK.</a>
+
+      <button class="menu-btn" id="menuBtn"
+        aria-label="Toggle navigation" aria-expanded="false">
+        Menu ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <span class="tag">Computer Science Student</span>
+
+        <h1>
+          Hi, I'm <span class="highlight">Sumesh Kumar Singh.</span>
+        </h1>
+
+        <h2 style="font-size: clamp(21px, 4vw, 30px); margin-bottom: 18px;">
+          Aspiring Software Developer
+        </h2>
+
+        <p>
+          I enjoy solving problems, learning new technologies, and building
+          practical applications. My interests include software development,
+          web technologies, and machine learning.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">Explore My Projects</a>
+          <a href="#contact" class="btn">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        <p class="section-intro">
+          A little introduction about who I am and what I enjoy doing.
+        </p>
+
+        <div class="about-box">
+          <p>
+            I am a Bachelor of Technology student in Computer Science and
+            Engineering with an interest in software development and
+            emerging technologies.
+          </p>
+          <p>
+            I like turning ideas into practical software projects and
+            improving my programming, problem-solving, and development skills
+            through hands-on learning.
+          </p>
+          <p>
+            My goal is to become a skilled software professional and
+            contribute to projects that solve real-world problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Technical <span class="highlight">Skills</span></h2>
+        <p class="section-intro">
+          Technologies and tools I use or am learning.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill">Python<span>Programming</span></div>
+          <div class="skill">Java<span>Programming</span></div>
+          <div class="skill">HTML & CSS<span>Web Development</span></div>
+          <div class="skill">JavaScript<span>Web Development</span></div>
+          <div class="skill">Flask<span>Backend Development</span></div>
+          <div class="skill">MySQL<span>Databases</span></div>
+          <div class="skill">Scikit-learn<span>Machine Learning</span></div>
+          <div class="skill">Git & GitHub<span>Version Control</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        <p class="section-intro">
+          A selection of software projects and practical work.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project">
+            <div class="project-number">PROJECT 01</div>
+            <h3>CardioRisk AI</h3>
+            <p>
+              A cardiovascular risk prediction web application that uses
+              machine learning to estimate risk from clinical input data.
+              It also explores explainable AI and report generation.
+            </p>
+            <div class="tech">
+              <span>Python</span>
+              <span>Flask</span>
+              <span>MySQL</span>
+              <span>Scikit-learn</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 02</div>
+            <h3>Movie Recommendation System</h3>
+            <p>
+              A web application designed to help users discover movies
+              through a recommendation system and a simple interface.
+            </p>
+            <div class="tech">
+              <span>Python</span>
+              <span>Flask</span>
+              <span>Pandas</span>
+              <span>Machine Learning</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 03</div>
+            <h3>Gym Management System</h3>
+            <p>
+              A web-based management system concept for organizing member
+              records, trainer information, and gym memberships.
+            </p>
+            <div class="tech">
+              <span>PHP</span>
+              <span>MySQL</span>
+              <span>HTML</span>
+              <span>CSS</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 04</div>
+            <h3>E-commerce Comparison Platform</h3>
+            <p>
+              A planned platform for comparing product prices, customer
+              reviews, and estimated delivery times across shopping sites.
+            </p>
+            <div class="tech">
+              <span>Web Development</span>
+              <span>JavaScript</span>
+              <span>APIs</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">My <span class="highlight">Education</span></h2>
+        <p class="section-intro">
+          My academic background.
+        </p>
+
+        <div class="education-box">
+          <h3>Bachelor of Technology (B.Tech)</h3>
+          <p>Computer Science and Engineering</p>
+          <p>University: Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)</p>
+          <p>College: Add your college name here</p>
+          <p>Graduation year: Add your expected graduation year</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+        <p class="section-intro">
+          Interested in connecting, collaborating, or discussing technology?
+          Feel free to reach out.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>Find me through my professional profiles.</p>
+
+            <a class="contact-link"
+               href="https://linkedin.com/in/sumesh-kumar-singh-342268294"
+               target="_blank" rel="noopener noreferrer">
+              LinkedIn Profile ↗
+            </a>
+
+            <a class="contact-link"
+               href="https://github.com/Sumesh-Kumar-singh"
+               target="_blank" rel="noopener noreferrer">
+              GitHub Profile ↗
+            </a>
+
+            <p style="margin-top: 25px;">
+              Add your professional email address here before publishing.
+            </p>
+          </div>
+
+          <div>
+            <form id="contactForm">
+              <input type="text" id="visitorName"
+                placeholder="Your name" aria-label="Your name" required>
+
+              <input type="email" id="visitorEmail"
+                placeholder="Your email address"
+                aria-label="Your email address" required>
+
+              <textarea id="visitorMessage"
+                placeholder="Your message"
+                aria-label="Your message" required></textarea>
+
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+
+              <p class="form-note" id="formNote" aria-live="polite">
+                This demo opens your email app to send the message.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © <span id="year"></span> Sumesh Kumar Singh.
+        Built with <span>HTML, CSS & JavaScript</span>.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Automatically update the copyright year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Mobile navigation
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close the mobile menu after selecting a section
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Demo contact form: prepare an email using the visitor's email app
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = document.getElementById("visitorName").value.trim();
+      const email = document.getElementById("visitorEmail").value.trim();
+      const message = document.getElementById("visitorMessage").value.trim();
+      const note = document.getElementById("formNote");
+
+      // Replace this placeholder with your real email before publishing.
+      const yourEmail = "YOUR_EMAIL@example.com";
+
+      if (yourEmail === "YOUR_EMAIL@example.com") {
+        note.textContent =
+          "Please add your real email in the JavaScript code before using this form.";
+        return;
+      }
+
+      const subject = encodeURIComponent("Portfolio message from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n\n" +
+        "Message:\n" + message
+      );
+
+      window.location.href =
+        "mailto:" + yourEmail + "?subject=" + subject + "&body=" + body;
+    });
+  </script>
+
+</body>
+</html>
